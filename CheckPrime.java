@@ -1,4 +1,3 @@
-package basic_programs;
 import java.util.Scanner;
 class PrimeChecker{
 	boolean isPrime(int item) {
