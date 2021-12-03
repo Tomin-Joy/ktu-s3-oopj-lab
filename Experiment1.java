@@ -1,4 +1,4 @@
-package lab;
+
 import java.util.Scanner;
 class Palindrome{
 	boolean checkPalindrome(String word) {
