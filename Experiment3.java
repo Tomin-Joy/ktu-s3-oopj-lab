@@ -23,7 +23,7 @@ class Matrix{
 			for(int j=0;j<q;j++) {
 				res[i][j]=0;
 				for(int k= 0;k<n;k++) {
-					res[i][j]+=A[i][k]+B[k][j];
+					res[i][j]+=A[i][k]*B[k][j];
 				}
 			}
 		}
