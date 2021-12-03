@@ -41,13 +41,13 @@ public class Operators {
 		int number2;
 		System.out.print("Enter first number : ");
 		number1 = sc.nextInt();
-		/*System.out.print("Enter second number : ");
+		System.out.print("Enter second number : ");
 		number2 = sc.nextInt();
 		Operations s = new Operations();
 		s.Sum(number1, number2);
 		s.Difference(number1, number2);
 		s.Product(number1, number2);
-		s.Division(number1, number2);*/
+		s.Division(number1, number2);
 		System.out.println(number1>>1);
 		sc.close();
 	}
