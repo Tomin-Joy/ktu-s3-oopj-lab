@@ -1,4 +1,4 @@
-package lab;
+
 import java.util.Scanner;
 class Frequency{
 	int counter(String str,char ch) {
