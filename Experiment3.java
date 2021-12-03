@@ -1,4 +1,4 @@
-package lab;
+
 import java.util.Scanner;
 class Matrix{
 	Scanner sc = new Scanner(System.in);
