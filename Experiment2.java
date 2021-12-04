@@ -2,7 +2,7 @@
 import java.util.Scanner;
 class Frequency{
 	int counter(String str,char ch) {
-		int l =str.length() -1;
+		int l =str.length();
 		int count =0;
 		for(int i=0;i<l;i++) {
 			if(ch == str.charAt(i)) {
