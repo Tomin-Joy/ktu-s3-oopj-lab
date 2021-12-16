@@ -4,7 +4,7 @@
  * Author : Tomin Joy
  * Desc   : A program to use inheritance
  */
-package lab;
+
 import java.util.Scanner;
 class Employee{
 	Scanner sc = new Scanner(System.in);

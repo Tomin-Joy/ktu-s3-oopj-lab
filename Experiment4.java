@@ -5,7 +5,7 @@
  * Desc   : A program to use function overload 
  */
 
-package lab;
+
 import java.util.Scanner;
 class Shapes{
 	void area(double radius) {

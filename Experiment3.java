@@ -49,7 +49,7 @@ public class Experiment3 {
 			int[][] product = new int[m][q];
 			System.out.println("Enter first matrix :");
 			matrix.readMatrix(matrix1, m, n);
-			System.out.println("The matrix is ;");
+			System.out.println("The matrix is :");
 			matrix.printMatrix(matrix1, m, n);
 			System.out.println("Enter second matrix :");
 			matrix.readMatrix(matrix2, p, q);
