@@ -53,7 +53,8 @@ class Cat extends Animal implements pet{
 		System.out.println("Cats like to eat fish.");
 	}
 }
-class Fish extends Animal {
+class Fish extends Animal implements pet {
+	String name;
 	Fish(){
 		super(0);	
 	}
@@ -63,22 +64,35 @@ class Fish extends Animal {
 	void eat() {
 		System.out.println("Fish eats plants ");
 	}
+	public String getName() {
+		return this.name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void play() {
+		System.out.println(this.name+" likes to play with balls");;
+	}
 }
 public class Experiment8 {
 
 	public static void main(String[] args) {
 		Fish d = new Fish();
 		Cat c = new Cat("Fluffy");
-		Animal a = new Fish();
-		Animal e = new Spider();
+		//Animal a = new Fish();
+		Spider e = new Spider();
 		//Pet p = new Cat();
 		 d.walk();
+		 d.setName("Dolphin");
+		 System.out.println("Fish's name is "+d.getName());
+		 d.eat();
+		 d.play();
 		 System.out.println("Cat's name is "+c.getName());
-	     c.play();
+	     c.play(); 
 	     c.eat();
 	     e.eat();
 	     e.walk();
-	     a.walk();
+	     //a.walk();
 	}
 
 }
