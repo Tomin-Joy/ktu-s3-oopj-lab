@@ -5,7 +5,7 @@
  * Desc   : A program to understand abstract class
  */
 
-package lab;
+//package lab;
 abstract class Shape{
 	abstract void noOfSides();
 }

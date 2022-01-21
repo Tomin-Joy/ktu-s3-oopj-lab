@@ -5,7 +5,7 @@
  * Desc   : A program to understand class inheritance
  */
  
-package lab;
+//package lab;
 
 abstract class Animal{
 	protected int legs;

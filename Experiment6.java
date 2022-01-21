@@ -5,7 +5,7 @@
  * Desc   : A program to understand inheritance
  */
 
-package lab;
+//package lab;
 import java.util.Scanner;
 class Employee{
 	String name;
