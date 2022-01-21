@@ -1,4 +1,23 @@
+/*
+ * file   : Experiment10
+ * Date   : 21-01-2022
+ * Author : Tomin Joy
+ * Desc   : A program to implement file handling 
+ */
+
 import java.util.Scanner;
+
+class InvalidAmountException extends Exception {
+	InvalidAmountException(String s) {
+		super(s);
+	}
+}
+
+class InsufficientFundsException extends Exception {
+	InsufficientFundsException(String s) {
+		super(s);
+	}
+}
 
 class BankDetails {
 	private String accno;
@@ -6,7 +25,6 @@ class BankDetails {
 	private int balance;
 	Scanner sc = new Scanner(System.in);
 
-	
 	public void openAccount() {
 		System.out.print("Enter Account No: ");
 		accno = sc.next();
@@ -16,35 +34,51 @@ class BankDetails {
 		balance = sc.nextInt();
 	}
 
-	
 	public void showAccount() {
 		System.out.println("Name of account holder: " + name);
 		System.out.println("Account no.: " + accno);
 		System.out.println("Balance: " + balance);
 	}
 
-	
 	public void deposit() {
 		int amt;
-		System.out.println("Enter the amount you want to deposit: ");
+		System.out.print("Enter the amount you want to deposit: ");
 		amt = sc.nextInt();
-		balance = balance + amt;
+		try {
+			if (amt <= 0) {
+				throw new InvalidAmountException("Deposit amount should be greater than 0");
+			}
+			balance = balance + amt;
+			System.out.println("Balance after deposit: " + balance);
+		} catch (InvalidAmountException E) {
+			System.out.println("Exception occured: " + E);
+		}
+
 	}
 
-	
 	public void withdrawal() {
 		int amt;
-		System.out.println("Enter the amount you want to withdraw: ");
+		System.out.print("Enter the amount you want to withdraw: ");
 		amt = sc.nextInt();
-		if (balance >= amt) {
-			balance = balance - amt;
-			System.out.println("Balance after withdrawal: " + balance);
-		} else {
-			System.out.println("Your balance is less than " + amt + "\tTransaction failed...!!");
+		try {
+			if (amt <= 0) {
+				throw new InvalidAmountException("Witdraw amount should be greater than 0");
+			}
+
+			try {
+				if (balance < amt) {
+					throw new InsufficientFundsException("Withdraw amount should not exceed balance");
+				}
+				balance = balance - amt;
+				System.out.println("Balance after withdrawal: " + balance);
+			} catch (InsufficientFundsException E) {
+				System.out.println("Exception occured: " + E);
+			}
+		} catch (InvalidAmountException E) {
+			System.out.println("Exception occured: " + E);
 		}
 	}
 
-	
 	public boolean search(String ac_no) {
 		if (accno.equals(ac_no)) {
 			showAccount();
@@ -65,15 +99,16 @@ public class Experiment10 {
 			C[i] = new BankDetails();
 			C[i].openAccount();
 		}
-		
+
 		int ch;
 		do {
 			System.out.println("\n============================================");
-			System.out.println("1. Display all account details \n 2. Search by Account number\n 3. Deposit the amount \n 4. Withdraw the amount \n 5.Exit ");
+			System.out.println(
+					"1. Display all account details \n2. Search by Account number\n3. Deposit the amount \n4. Withdraw the amount \n5. Exit ");
 			System.out.print("Enter your choice: ");
 			ch = sc.nextInt();
 			System.out.println("\n============================================");
-			
+
 			switch (ch) {
 				case 1:
 					for (int i = 0; i < C.length; i++) {
