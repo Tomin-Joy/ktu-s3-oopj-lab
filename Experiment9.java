@@ -5,11 +5,9 @@
  * Desc   : A program to implement file handling 
  */
 
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
-import java.io.FileWriter;
-import java.io.FileReader;
-import java.io.FileNotFoundException;
+
 class File
 {
     String readFile(String name) throws IOException{
