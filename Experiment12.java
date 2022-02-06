@@ -16,10 +16,10 @@ public class Experiment12 {
         int x3 = sc.nextInt();
         Table t = new Table();
         Thread t1 = new Thread(new Thread1(x1,t));
-        Thread t2 = new Thread(new Thread1(x2,t));
-        Thread t3 = new Thread(new Thread1(x3,t));
         t1.start();
+        Thread t2 = new Thread(new Thread1(x2,t));
         t2.start();
+        Thread t3 = new Thread(new Thread1(x3,t));
         t3.start();
         sc.close();
     }
@@ -40,32 +40,6 @@ class Thread1 implements Runnable {
     int x;
     Table t;
     Thread1(int x,Table t) {
-        this.t = t;
-        this.x = x;
-    }
-
-    public void run() {
-        t.printTable(x);
-    }
-}
-
-class Thread2 implements Runnable {
-    int x;
-    Table t;
-    Thread2(int x,Table t) {
-        this.t = t;
-        this.x = x;
-    }
-
-    public void run() {
-        t.printTable(x);
-    }
-}
-
-class Thread3 implements Runnable {
-    int x;
-    Table t;
-    Thread3(int x,Table t) {
         this.t = t;
         this.x = x;
     }
