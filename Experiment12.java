@@ -15,12 +15,14 @@ public class Experiment12 {
         System.out.println("Enter the Table you want to run by thread3 : ");
         int x3 = sc.nextInt();
         Table t = new Table();
-        Thread t1 = new Thread(new Thread1(x1,t));
+        Thread t1 = new Thread1(x1,t);
+        
+        Thread t2 = new Thread1(x2,t);
+       
+        Thread t3 = new Thread1(x3,t);
         t1.start();
-        Thread t2 = new Thread(new Thread1(x2,t));
-        t2.start();
-        Thread t3 = new Thread(new Thread1(x3,t));
         t3.start();
+        t2.start();
         sc.close();
     }
 
@@ -36,7 +38,7 @@ class Table {
     }
 }
 
-class Thread1 implements Runnable {
+class Thread1 extends Thread {
     int x;
     Table t;
     Thread1(int x,Table t) {
