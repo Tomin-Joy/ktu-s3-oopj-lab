@@ -1,10 +1,6 @@
-package lab;
+//package lab;
 import java.awt.*;
 import java.awt.event.*;
-
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
 
 
 
@@ -19,75 +15,34 @@ public class Experiment13 {
 }
 
 class App extends Frame implements WindowListener,ActionListener{
-	Button b0,b1,b2,b3,b4,b5,b6,b7,b8,b9;
-	Button add,sub,mul,div,cls,eq;
-	Label T;
-	String s;
+	Label T =new Label("0",2);
+	String [] symbols={"1","2","3","+","4","5","6","-","7","8","9","*","/","0","C","="};
+	Button buttonArray[]= new Button[16];
+	String str1="";
+	int p = 0, q = 0;
+    String operator;
 	void run(){
-		s="";
-		setSize(420,340); 
-		setLayout(null);
 		Panel p = new Panel(new GridLayout(4,4,10,10));
-		setVisible(true);
-		setResizable(false);
 		addWindowListener(this);
-		b0=new Button("0");
-		b1= new Button("1");
-		b2=new Button("2");
-		b3=new Button("3");
-		b4=new Button("4");
-		b5=new Button("5");
-		b6=new Button("6");
-		b7=new Button("7");
-		b8=new Button("8");
-		b9=new Button("9");
-		add=new Button("+");
-		mul=new Button("*");
-		div=new Button("/");
-		cls=new Button("C");
-		sub=new Button("-");
-		eq=new Button("=");
-		T =new Label("0",2);
 		T.setFont (new Font ("TimesRoman", Font.BOLD,34));
 		add(T);
 		T.setBackground(Color.BLACK);
 		T.setForeground(Color.WHITE);
 		T.setBounds(10,10,400,100);
-		p.add(b1);
-		p.add(b2);
-		p.add(b3);
-		p.add(add);
-		p.add(b4);
-		p.add(b5);
-		p.add(b6);
-		p.add(sub);
-		p.add(b7);
-		p.add(b8);
-		p.add(b9);
-		p.add(mul);
-		p.add(div);
-		p.add(b0);
-		p.add(eq);
-		p.add(cls);
+		Font font = new Font ("TimesRoman", Font.BOLD,24); 
+		for (int i = 0; i < 16; i++) {
+            buttonArray[i] = new Button("" + symbols[i]);
+            p.add(buttonArray[i]);
+			buttonArray[i].setFont(font);
+            buttonArray[i].addActionListener(this);
+
+        }
 		add(p);
 		p.setBounds(10,120,400,200);
-		b0.addActionListener(this);
-		b1.addActionListener(this);
-		b2.addActionListener(this);
-		b3.addActionListener(this);
-		b4.addActionListener(this);
-		b5.addActionListener(this);
-		b6.addActionListener(this);
-		b7.addActionListener(this);
-		b8.addActionListener(this);
-		b9.addActionListener(this);
-		add.addActionListener(this);
-		sub.addActionListener(this);
-		div.addActionListener(this);
-		mul.addActionListener(this);
-		cls.addActionListener(this);
-		eq.addActionListener(this);
-		
+		setSize(420,330); 
+		setLayout(null);
+		setVisible(true);
+		setResizable(false);
 		
 	}
 
@@ -135,27 +90,41 @@ class App extends Frame implements WindowListener,ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Button b = (Button) e.getSource();
-		if(b!=eq && b!=cls) {
-			s=s+b.getLabel();
-			
-		}
-		else if(b==cls) {
-			s="";
-			
-		}
-		else {
-			ScriptEngineManager manager = new ScriptEngineManager();
-			ScriptEngine engine = manager.getEngineByName("js");
-			try {
-				Object result = engine.eval(s);
-				s=result.toString();
-			} catch (ScriptException e1) {
-				
-			}
-		}
-		T.setText(s);
-	}
-	
-	
+		String str = e.getActionCommand();
+
+        switch (str) {
+            case "+": case "-": case "*": case "/": 
+                p = Integer.parseInt(T.getText());
+                operator = str;
+				str1 ="";
+                T.setText(str1);
+				break;
+            case "=": str1 = "";
+                	  switch (operator) {
+                	      case "+": q = Integer.parseInt(T.getText());
+                	          	  T.setText(String.valueOf((p + q)));
+					  			  break;
+                	      case "-": q = Integer.parseInt(T.getText());
+                	                T.setText(String.valueOf((p - q)));
+					  		      break;
+                	      case "*": q = Integer.parseInt(T.getText());
+                	                T.setText(String.valueOf((p * q)));
+					  		      break;
+                	      case "/": q = Integer.parseInt(T.getText());
+                	                T.setText(String.valueOf((p / q)));
+					  		      break;
+                	  }
+					  break;
+            case "C": p = 0;
+					  q = 0;
+					  T.setText("");
+					  str1 = "";
+					  T.setText("0");
+					  break;
+            default : {
+                T.setText(str1.concat(str));
+                str1 = T.getText();
+            }
+        }
+    }
 }
