@@ -6,7 +6,7 @@
  */
 
 import java.util.Scanner;
-class Employee{
+class Employeee {
 	Scanner sc = new Scanner(System.in);
 	int basicSalary;
 	double DA,HRA,grossSalary;
@@ -29,7 +29,7 @@ class Employee{
 	
 }
 
-class Engineer extends Employee{
+class Engineer extends Employeee {
 	
 }
 
