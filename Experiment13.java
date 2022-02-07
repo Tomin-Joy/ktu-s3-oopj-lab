@@ -102,16 +102,16 @@ class App extends Frame implements WindowListener,ActionListener{
             case "=": str1 = "";
                 	  switch (operator) {
                 	      case "+": q = Integer.parseInt(T.getText());
-                	          	  T.setText(String.valueOf((p + q)));
+                	          	  T.setText(p+" + "+q+" = "+String.valueOf((p + q)));
 					  			  break;
                 	      case "-": q = Integer.parseInt(T.getText());
-                	                T.setText(String.valueOf((p - q)));
+                	                T.setText(p+" - "+q+" = "+String.valueOf((p - q)));
 					  		      break;
                 	      case "*": q = Integer.parseInt(T.getText());
-                	                T.setText(String.valueOf((p * q)));
+                	                T.setText(p+" * "+q+" = "+String.valueOf((p * q)));
 					  		      break;
                 	      case "/": q = Integer.parseInt(T.getText());
-                	                T.setText(String.valueOf((p / q)));
+                	                T.setText(p+" / "+q+" = "+String.valueOf((p / q)));
 					  		      break;
                 	  }
 					  break;
