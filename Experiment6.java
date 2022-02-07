@@ -40,7 +40,7 @@ class Employee{
 	}
 }
 
-class Officer extends Employee{
+class Officer extends Employee {
 	String specialization;
 	void readData() {
 		super.readData();
@@ -56,7 +56,7 @@ class Officer extends Employee{
 	}
 }
 
-class Manager extends Employee{
+class Manager extends Employee {
 	String department;
 	void readData() {
 		super.readData();
