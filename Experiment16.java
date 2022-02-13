@@ -1,5 +1,4 @@
-import java.util.Scanner;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Experiment16 {
     public static void main(String[] args) {
@@ -7,9 +6,13 @@ public class Experiment16 {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
         StringTokenizer s = new StringTokenizer(str,",");
+        int sum=0;
         while(s.hasMoreTokens()){
-            System.out.println(s.nextToken());
+            int i = Integer.parseInt(s.nextToken());
+            System.out.println(i);
+            sum+=i;
         }
+        System.out.println("The sum is : "+sum);
         sc.close();
     }
 }
