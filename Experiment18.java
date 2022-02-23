@@ -2,7 +2,7 @@
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class DLL {
+public class Experiment18 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -37,7 +37,7 @@ public class DLL {
 					int dat = sc.nextInt();
 					System.out.print("Enter position: ");
 					int index = sc.nextInt();
-					list.add(index, dat);
+					list.add(index-1, dat);
 					System.out.print(list);
 					break;
 
@@ -54,7 +54,7 @@ public class DLL {
 				case 6:
 					System.out.print("Enter position: ");
 					int index1 = sc.nextInt();
-					list.remove(index1);
+					list.remove(index1-1);
 					System.out.print(list);
 					break;
 
