@@ -1,4 +1,4 @@
-package lab;
+//package lab;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -44,6 +44,7 @@ public class Experiment17 {
     	for(int i = 0 ; i<n;i++) {
     		arr[i]=sc.nextInt();
     	}
+        sc.close();
     	return arr;
     }
 
