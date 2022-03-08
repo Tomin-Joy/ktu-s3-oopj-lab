@@ -1,90 +1,93 @@
-/*
- * file   : Experiment6
- * Date   : 17-12-2021
- * Author : Tomin Joy
- * Desc   : A program to understand inheritance
- */
+/*******************************************************************
+ * File  : Experiment
+ * Author: Name
+ * Date  : DD/MM/YYYY
+ *******************************************************************/
 
-//package lab;
-import java.util.Scanner;
-class Employee{
+abstract class Animal{
+	protected int legs;
+	protected Animal(int legs){
+		this.legs=legs;
+	}
+	abstract void eat();
+	void walk() {
+		System.out.println("It walks using "+legs+" legs");
+	}
+}
+
+class Spider extends Animal{
+	Spider(){
+		super(8);
+	}
+	void eat() {
+		System.out.println("Spider eats bugs");
+	}
+}
+interface pet{
+	abstract String getName();
+	abstract void setName(String name);
+	abstract void play();
+}
+class Cat extends Animal implements pet{
 	String name;
-	int age;
-	String phoneNumber;
-	String address;
-	int salary;
-	Scanner sc = new Scanner(System.in);
-	public void printSalary() {
-		System.out.println("The salary is : ₹"+salary);
+	Cat(String name){
+		super(4);
+		this.name = name;
 	}
-	
-	void readData() {
-		
-		System.out.print("Enter name : ");
-		name = sc.nextLine();
-		System.out.print("Enter age : ");
-		age = sc.nextInt();
-		System.out.print("Enter phone number : ");
-		phoneNumber = sc.next();
-		System.out.print("Enter address : ");
-		sc.nextLine();
-		address = sc.nextLine();
-		System.out.print("Enter salary : ₹");
-		salary = sc.nextInt();
+	Cat(){
+		this("");
 	}
-	void printData() {
-		System.out.println("Name : "+ name);
-		System.out.println("Age  : "+age);
-		System.out.println("Phone number : "+phoneNumber);
-		System.out.println("Address : "+address);
+	public String getName() {
+		return this.name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void play() {
+		System.out.println(this.name+" likes to play with balls");;
+	}
+	void eat() {
+		System.out.println("Cats like to eat fish.");
 	}
 }
-
-class Officer extends Employee {
-	String specialization;
-	void readData() {
-		super.readData();
-		System.out.print("Enter Specialization : ");
-		sc.nextLine();
-		specialization = sc.nextLine();
+class Fish extends Animal implements pet {
+	String name;
+	Fish(){
+		super(0);	
 	}
-	
-	void printData() {
-		super.printData();
-		super.printSalary();
-		System.out.println("Specialization : "+specialization);
+	void walk() {
+		System.out.println("Fish can't walk and don't have legs.");
 	}
-}
-
-class Manager extends Employee {
-	String department;
-	void readData() {
-		super.readData();
-		System.out.print("Enter Department : ");
-		sc.nextLine();
-		department = sc.nextLine();
+	void eat() {
+		System.out.println("Fish eats plants ");
 	}
-	
-	void printData() {
-		super.printData();
-		super.printSalary();
-		System.out.println("Department : "+department);
+	public String getName() {
+		return this.name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void play() {
+		System.out.println(this.name+" likes to play with balls");;
 	}
 }
 public class Experiment6 {
-
 	public static void main(String[] args) {
-		Officer off = new Officer();
-		Manager mgnr = new Manager();
-		System.out.println("Enter Details of manager");
-		mgnr.readData();
-		System.out.println("The Details of manger");
-		mgnr.printData();
-		System.out.println("\nEnter Details of officer");
-		off.readData();
-		System.out.println("The Details of officer");
-		off.printData();
-		
+		Fish d = new Fish();
+		Cat c = new Cat("Fluffy");
+		//Animal a = new Fish();
+		Spider e = new Spider();
+		//Pet p = new Cat();
+		 d.walk();
+		 d.setName("Dolphin");
+		 System.out.println("Fish's name is "+d.getName());
+		 d.eat();
+		 d.play();
+		 System.out.println("Cat's name is "+c.getName());
+	     c.play(); 
+	     c.eat();
+	     e.eat();
+	     e.walk();
+	     //a.walk();
 	}
-
 }

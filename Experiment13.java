@@ -1,19 +1,14 @@
 
-//package lab;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
 public class Experiment13 {
-
 	public static void main(String[] args) {
 		App app = new App();
 		app.run();
-
 	}
-
 }
-
 class App extends JFrame implements ActionListener {
 	Label T = new Label("0", 2);
 	String[] symbols = { "1", "2", "3", "+", "4", "5", "6", "-", "7", "8", "9", "*", "/", "0", "C", "=" };
@@ -43,8 +38,6 @@ class App extends JFrame implements ActionListener {
 		setLayout(null);
 		setVisible(true);
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {

@@ -1,4 +1,8 @@
-
+/*******************************************************************
+ * File  : Experiment
+ * Author: Name
+ * Date  : DD/MM/YYYY
+ *******************************************************************/
 import java.util.Scanner;
 class Matrix{
 	Scanner sc = new Scanner(System.in);
@@ -30,7 +34,6 @@ class Matrix{
 	}
 }
 public class Experiment3 {
-
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int m,n,p,q;
@@ -57,14 +60,11 @@ public class Experiment3 {
 			matrix.printMatrix(matrix2, p, q);
 			matrix.product(matrix1, matrix2, product, m, n, q);
 			System.out.println("The product matrix is : ");
-			matrix.printMatrix(product, m, q);
-			
-			
+			matrix.printMatrix(product, m, q);	
 		}
 		else {
 			System.out.println("Invalid order for matrix multiplication");
 		}
 		sc.close();
 	}
-
 }

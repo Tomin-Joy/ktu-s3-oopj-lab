@@ -1,24 +1,19 @@
-/*
- * file   : Experiment4
- * Date   : 10-12-2021
- * Author : Tomin Joy
- * Desc   : A program to use function overload 
- */
-
+/*******************************************************************
+ * File  : Experiment
+ * Author: Name
+ * Date  : DD/MM/YYYY
+ *******************************************************************/
 
 import java.util.Scanner;
 class Shapes{
 	void area(double radius) {
 		System.out.println("Area of circle is "+(3.14*radius*radius));
-		
 	}
 	void area(double bredth,double width) {
 		System.out.println("Area of rectangle is "+( bredth*width));
-		
 	}
 	void area(int base,int height) {
-		System.out.println("Area of triangle is "+( 0.5*base*height));
-		
+		System.out.println("Area of triangle is "+( 0.5*base*height));	
 	}
 }
 public class Experiment4 {
@@ -41,6 +36,5 @@ public class Experiment4 {
 		base = sc.nextInt();
 		s.area(base, height);
 		sc.close();
-		
 	}
 }
