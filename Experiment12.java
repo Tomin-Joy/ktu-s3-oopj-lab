@@ -1,52 +1,102 @@
-import java.util.Scanner;
-/*
- * file   : Experiment12
- * Date   : 28-01-2022
- * Author : Tomin Joy
- * Desc   : A program to implement syncronization
- */
-public class Experiment12 {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the Table you want to run by thread1 : ");
-        int x1 = sc.nextInt();
-        System.out.println("Enter the Table you want to run by thread2 : ");
-        int x2 = sc.nextInt();
-        System.out.println("Enter the Table you want to run by thread3 : ");
-        int x3 = sc.nextInt();
-        Table t = new Table();
-        Thread t1 = new Thread1(x1,t);
-        
-        Thread t2 = new Thread1(x2,t);
-       
-        Thread t3 = new Thread1(x3,t);
-        t1.start();
-        t3.start();
-        t2.start();
-        sc.close();
+/*******************************************************************
+ * File  : Experiment
+ * Author: Name
+ * Date  : DD/MM/YYYY
+ *******************************************************************/
+import java.util.*;
+
+class RandomThread extends Thread {
+    Queue<Integer> sharedValue = new LinkedList<Integer>();
+    RandomThread(Queue<Integer> sharedValue) {
+        this.sharedValue = sharedValue;
     }
+    public void run() {
+        Random random = new Random();
+        while (true) {
+            synchronized (sharedValue) {
+                while(sharedValue.size()>=1){
+                   try{
+                    sharedValue.wait();
+                   }
+                   catch(InterruptedException e){
+                    e.printStackTrace();
+                   }
+                }
+                int randomInteger = random.nextInt(1000);
+                sharedValue.add(randomInteger);
+                System.out.println("Random Integer generated : " + randomInteger);
+                sharedValue.notifyAll();
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    
+                    e.printStackTrace();
+                }
+            }
 
-}
-
-class Table {
-    synchronized void printTable(int x) {
-        System.out.println(x+"'s Table started");
-        for (int i = 1; i <= 5; i++) {
-            System.out.println(x + " * " + i + " = " + i * x);
         }
-        System.out.println(x+"'s Table finished\n");
     }
 }
 
-class Thread1 extends Thread {
+class SquareThread extends Thread {
+    Queue<Integer> sharedValue = new LinkedList<Integer>();
     int x;
-    Table t;
-    Thread1(int x,Table t) {
-        this.t = t;
-        this.x = x;
+    SquareThread(Queue<Integer> sharedValue) {
+        this.sharedValue = sharedValue; 
+    }
+    public void run() {
+        while (true) {
+            synchronized (sharedValue) {
+                while (sharedValue.size() < 1 || sharedValue.element() % 2 == 1) {
+                    try {
+                        sharedValue.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                x = this.sharedValue.remove();
+                int sqr = x * x;
+                System.out.println("Square of " + x + " = " + sqr);
+                sharedValue.notifyAll();
+            }
+        }
+    }
+}
+
+class CubeThread extends Thread {
+    Queue<Integer> sharedValue = new LinkedList<Integer>();
+    int x;
+    CubeThread(Queue<Integer> sharedValue) {
+        this.sharedValue = sharedValue;
     }
 
     public void run() {
-        t.printTable(x);
+        while (true) {
+            synchronized (sharedValue) {
+                while (sharedValue.size() < 1 || sharedValue.element() % 2 == 0) {
+                    try {
+                        sharedValue.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                x = this.sharedValue.remove();
+                int t = x * x * x;
+                System.out.println("Cube of " + x + " = " + t);
+                sharedValue.notifyAll();
+            }
+        }
+    }
+}
+
+public class Experiment12 {
+    public static void main(String[] args) {
+        Queue<Integer> sharedValue = new LinkedList<Integer>();
+        RandomThread r = new RandomThread(sharedValue);
+        r.start();
+        CubeThread c = new CubeThread(sharedValue);
+        SquareThread s = new SquareThread(sharedValue);
+        s.start();
+        c.start();
     }
 }

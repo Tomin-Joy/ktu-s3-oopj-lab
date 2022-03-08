@@ -1,18 +1,64 @@
-import java.util.*;
+/*******************************************************************
+ * File  : Experiment
+ * Author: Name
+ * Date  : DD/MM/YYYY
+ *******************************************************************/
+import java.awt.*;
+import java.awt.event.*;
 
-public class Experiment16 {
+public class Experiment16 extends Frame implements ItemListener {
+    String clr = "";
+    Experiment16() {
+        Checkbox red, green, yellow;
+        CheckboxGroup cbg = new CheckboxGroup();
+        red = new Checkbox("red", true, cbg);
+        green = new Checkbox("green", true, cbg);
+        yellow = new Checkbox("yellow", true, cbg);
+        setSize(300, 300);
+        setTitle("Traffic Signal");
+        setVisible(true);
+        setLayout(null);
+        add(red);
+        add(yellow);
+        add(green);
+        red.setBounds(10,25,100,100);
+        yellow.setBounds(10,100,100,100);
+        green.setBounds(10,175,100,100);
+        red.addItemListener(this);
+        green.addItemListener(this);
+        yellow.addItemListener(this);
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+    }
+
     public static void main(String[] args) {
-        System.out.print("Enter the coma separated integer string : ");
-        Scanner sc = new Scanner(System.in);
-        String str = sc.nextLine();
-        StringTokenizer s = new StringTokenizer(str,",");
-        int sum=0;
-        while(s.hasMoreTokens()){
-            int i = Integer.parseInt(s.nextToken());
-            System.out.println(i);
-            sum+=i;
+        new Experiment16();
+    }
+
+    public void itemStateChanged(ItemEvent e) {
+        clr = (String)(e.getItem());
+        repaint();
+    }
+
+    public void paint(Graphics g) {
+        g.drawOval(200, 50, 50, 50);
+        g.drawOval(200, 125, 50, 50);
+        g.drawOval(200, 200, 50, 50);
+       
+        if (clr.equals("red")) {
+            g.setColor(Color.red);
+            g.fillOval(200, 50, 50, 50);
         }
-        System.out.println("The sum is : "+sum);
-        sc.close();
+        if (clr.equals("yellow")) {
+            g.setColor(Color.yellow);
+            g.fillOval(200, 125, 50, 50);
+        }
+        if (clr.equals("green")) {
+            g.setColor(Color.green);
+            g.fillOval(200, 200, 50, 50);
+        }
     }
 }

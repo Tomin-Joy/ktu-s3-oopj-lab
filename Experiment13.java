@@ -1,94 +1,48 @@
+/*******************************************************************
+ * File  : Experiment
+ * Author: Name
+ * Date  : DD/MM/YYYY
+ *******************************************************************/
+import java.util.Scanner;
 
-
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
 public class Experiment13 {
-	public static void main(String[] args) {
-		App app = new App();
-		app.run();
-	}
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the Table you want to run by thread1 : ");
+        int x1 = sc.nextInt();
+        System.out.println("Enter the Table you want to run by thread2 : ");
+        int x2 = sc.nextInt();
+        System.out.println("Enter the Table you want to run by thread3 : ");
+        int x3 = sc.nextInt();
+        Table t = new Table();
+        Thread t1 = new Thread1(x1,t);
+        Thread t2 = new Thread1(x2,t);
+        Thread t3 = new Thread1(x3,t);
+        t1.start();
+        t2.start();
+        t3.start();
+        sc.close();
+    }
 }
-class App extends JFrame implements ActionListener {
-	Label T = new Label("0", 2);
-	String[] symbols = { "1", "2", "3", "+", "4", "5", "6", "-", "7", "8", "9", "*", "/", "0", "C", "=" };
-	JButton buttonArray[] = new JButton[16];
-	String str1 = "";
-	int p = 0, q = 0;
-	String operator;
 
-	void run() {
-		Panel p = new Panel(new GridLayout(4, 4, 10, 10));
-		T.setFont(new Font("TimesRoman", Font.BOLD, 34));
-		add(T);
-		T.setBackground(Color.BLACK);
-		T.setForeground(Color.WHITE);
-		T.setBounds(10, 10, 400, 100);
-		Font font = new Font("TimesRoman", Font.BOLD, 24);
-		for (int i = 0; i < 16; i++) {
-			buttonArray[i] = new JButton("" + symbols[i]);
-			p.add(buttonArray[i]);
-			buttonArray[i].setFont(font);
-			buttonArray[i].addActionListener(this);
+class Table {
+    synchronized void printTable(int x) {
+        System.out.println(x+"'s Table started");
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(x + " * " + i + " = " + i * x);
+        }
+        System.out.println(x+"'s Table finished\n");
+    }
+}
 
-		}
-		add(p);
-		p.setBounds(10, 120, 400, 200);
-		setSize(430, 370);
-		setLayout(null);
-		setVisible(true);
-		setResizable(false);
-	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		String str = e.getActionCommand();
-		try {
-			switch (str) {
-				case "+":
-				case "-":
-				case "*":
-				case "/":
-					p = Integer.parseInt(T.getText());
-					operator = str;
-					str1 = "";
-					T.setText(str1);
-					break;
-				case "=":
-					str1 = "";
-
-					switch (operator) {
-						case "+":
-							q = Integer.parseInt(T.getText());
-							T.setText(p + " + " + q + " = " + String.valueOf((p + q)));
-							break;
-						case "-":
-							q = Integer.parseInt(T.getText());
-							T.setText(p + " - " + q + " = " + String.valueOf((p - q)));
-							break;
-						case "*":
-							q = Integer.parseInt(T.getText());
-							T.setText(p + " * " + q + " = " + String.valueOf((p * q)));
-							break;
-						case "/":
-							q = Integer.parseInt(T.getText());
-							T.setText(p + " / " + q + " = " + String.valueOf((p / q)));
-							break;
-						}
-					break;
-				case "C":
-					p = 0;
-					q = 0;
-					T.setText("");
-					str1 = "";
-					T.setText("0");
-					break;
-				default: {
-					T.setText(str1.concat(str));
-					str1 = T.getText();
-				}
-			}
-		} catch (Exception ex) {
-			T.setText("Syntax Error");
-		}
-	}
+class Thread1 extends Thread {
+    int x;
+    Table t;
+    Thread1(int x,Table t) {
+        this.t = t;
+        this.x = x;
+    }
+    public void run() {
+        t.printTable(x);
+    }
 }
