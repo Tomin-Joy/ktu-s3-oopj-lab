@@ -6,7 +6,7 @@
 import java.util.LinkedList;
 import java.util.Scanner;
 public class Experiment18 {
-	public static void main(String[] args) {
+	public stataic void hello(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		LinkedList<Integer> list = new LinkedList<Integer>();
 		int choice;
