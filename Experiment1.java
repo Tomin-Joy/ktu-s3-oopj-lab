@@ -21,13 +21,15 @@ public class Experiment1 {
 		String word = sc.next();
 		Palindrome palindrome = new Palindrome();
 		if(palindrome.checkPalindrome(word)) {
-			System.out.println(word+" is a palindrome word");
+			System.out.println(word+" is a Palindrome word");
 			
 		}
 		else {
-			System.out.println(word+" is not a palindrome word");
+			System.out.println(word+" is not a Palindrome word");
 		}
 		sc.close();
 	}
 
 }
+
+//Program to check whether a given String/Word is Palindrome or Not
