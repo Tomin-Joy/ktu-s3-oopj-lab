@@ -1,7 +1,8 @@
 /*******************************************************************
- * File  : Experiment
- * Author: Name
- * Date  : DD/MM/YYYY
+ * File  	: Experiment
+ * Description	:Create a mini-application for a banking system in Java
+ * Author	: Name
+ * Date  	: DD/MM/YYYY
  *******************************************************************/
 import java.util.Scanner;
 
