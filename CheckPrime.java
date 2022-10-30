@@ -17,7 +17,7 @@ public class CheckPrime {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		PrimeChecker p = new PrimeChecker();
-		System.out.print("enter the limit : ");
+		System.out.print("Enter the Limit : ");
 		int n = sc.nextInt();
 		int count=1;
 		int i=2;
