@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 class PrimeChecker{
 	boolean isPrime(int item) {
@@ -36,3 +37,4 @@ public class CheckPrime {
 	}
 
 }
+//java program to check prime or not
