@@ -1,6 +1,6 @@
 /*******************************************************************
- * File  : Experiment
- * Author: Name
+ * File  : Experiment10.java
+ * Author: Tomin Joy
  * Date  : DD/MM/YYYY
  *******************************************************************/
 import java.io.*;
